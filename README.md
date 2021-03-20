@@ -1,2 +1,1 @@
-# LearnGitRepo
-This repo is made for getting introduced with repo.
+This github account is meant for practice to save my projects. I will keep working and updating this repository after making significant progress.
