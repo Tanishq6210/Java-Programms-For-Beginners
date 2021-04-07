@@ -9,96 +9,86 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     int scoreTeamA = 0;
     int scoreTeamB = 0;
-    String winner = "";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        displayForTeamA(0);
+        displayForTeamB(0);
     }
 
-    /**
-     * Increase the team A score by 3.
-     */
-    public void increaseABy3(View view){
+
+    public void addThreeForTeamA(View v){
         scoreTeamA = scoreTeamA + 3;
         displayForTeamA(scoreTeamA);
     }
 
-    /**
-     * Increase the team A score by 2.
-     */
-    public void increaseABy2(View view){
+    public void addTwoForTeamA(View v){
         scoreTeamA = scoreTeamA + 2;
         displayForTeamA(scoreTeamA);
     }
 
-    /**
-     * Increase the team A score by 1.
-     */
-    public void freeThrowA(View view){
+    public void addOneForTeamA(View v){
         scoreTeamA = scoreTeamA + 1;
         displayForTeamA(scoreTeamA);
     }
-    /**
-     * Displays the given score for Team A.
-     */
-    public void displayForTeamA(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_a_score);
-        scoreView.setText(scoreTeamA);
 
-    }
 
-    /**
-     * Increase the team B score by 3.
-     */
-    public void increaseBBy3(View view){
+    public void addThreeForTeamB(View v){
         scoreTeamB = scoreTeamB + 3;
         displayForTeamB(scoreTeamB);
     }
 
-    /**
-     * Increase the team B score by 2.
-     */
-    public void increaseBBy2(View view){
+    public void addTwoForTeamB(View v){
         scoreTeamB = scoreTeamB + 2;
         displayForTeamB(scoreTeamB);
     }
 
-    /**
-     * Increase the team B score by 1.
-     */
-    public void freeThrowB(View view){
+    public void addOneForTeamB(View v){
         scoreTeamB = scoreTeamB + 1;
         displayForTeamB(scoreTeamB);
+    }
+
+
+    public void resetScore(View v){
+        scoreTeamA = 0;
+        scoreTeamB = 0;
+        displayForTeamA(scoreTeamA);
+        displayForTeamB(scoreTeamB);
+    }
+
+
+    /**
+     * Displays the given score for Team A.
+     */
+    public void displayForTeamA(int score) {
+        TextView scoreView =  findViewById(R.id.team_a_score);
+        scoreView.setText(String.valueOf(score));
     }
 
     /**
      * Displays the given score for Team B.
      */
     public void displayForTeamB(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_b_score);
-        scoreView.setText(score);
+        TextView scoreView =  findViewById(R.id.team_b_score);
+        scoreView.setText(String.valueOf(score));
     }
 
-    public void resetScore(View view){
-        scoreTeamA = 0;
-        scoreTeamB = 0;
-        winner = "";
-        displayResult(winner);
-        displayForTeamA(scoreTeamA);
-        displayForTeamB(scoreTeamB);
-    }
+    public void showResult(View v){
+        TextView newText=(TextView)findViewById(R.id.myText);
+        if(scoreTeamA>scoreTeamB){
+            newText.setText("TEAM A WON");
+        }
+        else if(scoreTeamB>scoreTeamA){
+            newText.setText("TEAM B WON");
+        }
+        else{
+            newText.setText("DRAW");
+        }
 
-    public void winner(View v){
-        if(scoreTeamA>scoreTeamB) winner = "Team A Wins";
-        else if (scoreTeamA == scoreTeamB) winner = "Draw";
-        else winner = "Team B Wins";
-        displayResult(winner);
-    }
-
-    public void displayResult(String result) {
-        TextView scoreView = (TextView) findViewById(R.id.winner);
-        scoreView.setText(result);
     }
 }
